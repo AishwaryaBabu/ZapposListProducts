@@ -1,0 +1,24 @@
+Method: 
+
+1. Create lists of sets of 1 to N items and stored as totalList.
+2. totalList[N-1] will contain sets of N items.
+3. Find the sets within totalList[N-1] whose price sum is the closest to the expected totalPrice.
+
+Output:
+E.g: 
+
+
+aishwarya@aishwarya-Inspiron-N5110:~/Documents/zappos$ ./main 
+Enter the number of objects you wish to purchase: 
+1
+
+Enter the maximum cost: 
+175
+8163094  424213 175 ;
+
+
+Here 8163094 is the product id
+424213 is the color id
+175 is the cost of the item
+ 
+
