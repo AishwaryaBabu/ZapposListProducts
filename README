@@ -1,3 +1,15 @@
+This program requires the data in the form of a text file in json format. 
+The following parameters have been hardcoded to be read from this file:
+price
+colorId
+productId
+currentResultCount
+
+
+To compile:
+$ make
+
+
 Method: 
 
 1. Create lists of sets of 1 to N items and stored as totalList.
@@ -8,7 +20,7 @@ Output:
 E.g: 
 
 
-aishwarya@aishwarya-Inspiron-N5110:~/Documents/zappos$ ./main 
+$ ./main 
 Enter the number of objects you wish to purchase: 
 1
 

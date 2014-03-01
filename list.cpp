@@ -3,19 +3,19 @@
 #include<vector>
 using namespace std;
 
-ListItem::ListItem(string productID, float productPrice, int colorID)
+ListItem::ListItem(int productID, float productPrice, int colorID)
 {
     productID_ = productID;
     productPrice_ = productPrice;
     colorID_ = colorID;
 }
 
-string ListItem::getProductID()
+int ListItem::getProductID()
 {
     return productID_;
 }
 
-void ListItem::setProductID(string productID)
+void ListItem::setProductID(int productID)
 {   
     productID_ = productID;
 }

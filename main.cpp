@@ -2,6 +2,7 @@
 #include<vector>
 #include<cmath>
 #include<fstream>
+#include<cstdlib>
 #include"list.h"
 using namespace std;
 
@@ -53,15 +54,60 @@ void displayFinalList(int N, vector<vector<ListItem> >& finalList)
     for(int i = 0; i < finalList.size(); i++)
     {
         for(int j = 0; j < N; j++)
-            cout<<finalList[i][j].getProductID()<<" "<<" "<<finalList[i][j].getProductColorID()<<" "<<finalList[i][j].getProductPrice()<<" ;";
+            cout<<finalList[i][j].getProductID()<<" "<<" "<<finalList[i][j].getProductColorID()<<" $"<<finalList[i][j].getProductPrice()<<" ;";
         cout<<endl;
     }
 }   
 
+void readInput(string inputFilename, vector<int>& productIds, vector<float>& priceArray,  vector<int>& colorIds, int& totalNumObjects)
+{
+
+    fstream fs;
+    fs.open(inputFilename.c_str(), fstream::in);
+
+    string input;
+    getline(fs, input);
+
+    fs.close();
+    int found=0;
+    int found1=0;
+    int count = 0;
+
+    found = input.find("currentResultCount");
+    found1 = input.find("\"", found+21);
+    totalNumObjects = atoi((input.substr(found+21, found1-found-21).c_str()));
+
+    found = 0;
+    found1 = 0;
+
+    while(count < totalNumObjects)
+    {
+        found = input.find("price", found+1); 
+        found1 = input.find("\"", found+9);
+        priceArray.push_back(atoi((input.substr(found+9, found1-found-9)).c_str()));
+
+        found = input.find("colorId", found+1);
+        found1 = input.find("\"", found+10);
+        colorIds.push_back(atoi((input.substr(found+10, found1-found-10)).c_str()));
+ 
+        found = input.find("productId", found+1);
+        found1 = input.find("\"", found+12);
+        productIds.push_back(atoi(input.substr(found+12, found1-found-12).c_str()));
+          
+//        cout<<input.substr(found+11, found1-found-11).c_str()<<endl;
+//        cout<<productIds[count]<<endl;
+        count++;
+    }
+
+    
+
+}
+
+
 int main(int argc, char* argv[])
 {
 
-    vector<string> productIds;
+    vector<int> productIds;
     vector<float> priceArray;
     vector<int> colorIds;
     int totalNumObjects = 0;
@@ -76,6 +122,11 @@ int main(int argc, char* argv[])
     cout<<"\nEnter the maximum cost: "<<endl;
     cin >> totalPrice;   
 
+//change
+
+    string inputFilename("data.json");
+    readInput(inputFilename, productIds, priceArray, colorIds, totalNumObjects);
+/*
     string inputFilename("inputFile.txt");
     fstream inputFile;
 
@@ -91,6 +142,8 @@ int main(int argc, char* argv[])
         priceArray.push_back(temp3);
         totalNumObjects++;
     }
+*/
+//change till here
 
     vector<List> totalList;
     List firstList;
